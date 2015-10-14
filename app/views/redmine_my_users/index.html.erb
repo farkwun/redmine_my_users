@@ -6,7 +6,7 @@
 
 		<label for='status'><%= l(:field_status) %>:</label>
 		<%= select_tag 'status',
-			users_status_options_for_select(@status),
+			users_status_options_for_select_with_parent_id(@status),
 			:class => "small",
 			:onchange => "this.form.submit(); return false;"  %>
 
@@ -54,4 +54,3 @@
 <p class="pagination"><%= pagination_links_full @user_pages, @user_count %></p>
 
 <% html_title(l(:label_my_users)) -%>
-

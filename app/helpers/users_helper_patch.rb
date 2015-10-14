@@ -2,10 +2,7 @@ module UsersHelperPatch
 	def self.included(base)
 		base.send(:include, InstanceMethods)
 
-		# Wrap the methods we are extending
-		base.alias_method_chain :users_status_options_for_select, :parent_id
-
-		# Exectue this code at the class level (not instance level)
+		# Execute this code at the class level (not instance level)
 		base.class_eval do
 			unloadable # Send unloadable so it will not be unloaded in development
 
