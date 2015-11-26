@@ -14,8 +14,9 @@ module UserPatch
 
 			acts_as_tree :dependent => :nullify, :order => User::USER_FORMATS[Setting.user_format || :firstname_lastname][:order]
 
-			validates_presence_of :parent
 
+			validates_presence_of :parent
+			
 			safe_attributes 'parent_id'
 		end
 	end

@@ -2,3 +2,4 @@
 en:
   field_user_parent: "Sponsor"
   label_my_users: "My users"
+  label_admin_toggle_box: "Show all users"

@@ -12,6 +12,11 @@ Redmine::Plugin.register :redmine_my_users do
 
 	version '0.1.4'
 	requires_redmine :version_or_higher => '2.0.0'
+	settings :default => {
+  :admin_toggle_all => false,
+	:save_log => false
+	}
+
 end
 
 
@@ -41,4 +46,3 @@ def load_patches(path = nil)
 	end
 end
 load_patches
-

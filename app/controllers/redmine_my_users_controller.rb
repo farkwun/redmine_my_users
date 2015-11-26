@@ -22,7 +22,8 @@ class RedmineMyUsersController < ApplicationController::UsersController
 
 		@status = params[:status] || 1
 
-    scope = User.where("parent_id = ?", User.current.id).status(@status)
+  #  scope = User.where("parent_id = ?", User.current.id).status(@status)
+	scope = User.all.status(@status)
     scope = scope.like(params[:name]) if params[:name].present?
     scope = scope.in_group(params[:group_id]) if params[:group_id].present?
 
@@ -45,4 +46,3 @@ class RedmineMyUsersController < ApplicationController::UsersController
 	end
 
 end
-
