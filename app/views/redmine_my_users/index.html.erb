@@ -22,6 +22,10 @@
 		<%= text_field_tag 'name', params[:name], :size => 30 %>
 
 		<%= submit_tag l(:button_apply), :class => "small", :name => nil %>
+		<%if User.current.admin?%>
+				<label for='name'><%= l(:label_admin_toggle_box) %>:</label>
+			  <%= check_box_tag 'admin_toggle_all', params[:admin_toggle_all], @admin_toggle, onclick: "this.form.submit();" %>
+		<%end%>
 		<%= link_to l(:button_clear), my_users_path, :class => 'icon icon-reload' %>
 	</fieldset>
 <% end %>
