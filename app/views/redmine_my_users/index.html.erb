@@ -21,13 +21,14 @@
 		<label for='name'><%= l(:label_user) %>:</label>
 		<%= text_field_tag 'name', params[:name], :size => 30 %>
 
-		<label for='name'><%= l(:label_admin_toggle_box) %>:</label>
-
-			  <%= check_box_tag 'settings[save_ldog]', params[:admin_toggle_all],Setting.plugin_redmine_my_users[:admin_toggle_all], onclick: "this.form.submit();" %>
 
 
 
 		<%= submit_tag l(:button_apply), :class => "small", :name => nil %>
+		<%if User.current.admin?%>
+				<label for='name'><%= l(:label_admin_toggle_box) %>:</label>
+			  <%= check_box_tag 'admin_toggle_all', params[:admin_toggle_all], @admin_toggle, onclick: "this.form.submit();" %>
+		<%end%>
 		<%= link_to l(:button_clear), my_users_path, :class => 'icon icon-reload' %>
 
 

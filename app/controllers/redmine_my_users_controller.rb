@@ -22,8 +22,15 @@ class RedmineMyUsersController < ApplicationController::UsersController
 
 		@status = params[:status] || 1
 
+		@admin_toggle = params[:admin_toggle_all] || false
+
+		if User.current.admin? && @admin_toggle == "on"
+			scope = User.all.status(@status)
+		else
+			scope = User.where("parent_id = ?", User.current.id).status(@status)
+		end
   #  scope = User.where("parent_id = ?", User.current.id).status(@status)
-	scope = User.all.status(@status)
+#	scope = User.all.status(@status)
     scope = scope.like(params[:name]) if params[:name].present?
     scope = scope.in_group(params[:group_id]) if params[:group_id].present?
 
