@@ -49,15 +49,18 @@
 		</thead>
 		<tbody>
 			<% for user in @users -%>
+		<%render_descendants_tree(user) if user.children%>
 				<tr class="<%= user.css_classes %> <%= cycle("odd", "even") %>">
 					<td class="username"><%= avatar(user, :size => "14") %><%= link_to_user(user) %></td>
 					<td class="email"><%= mail_to(user.mail) %></td>
 					<td class="last_login_on"><%= format_time(user.last_login_on) unless user.last_login_on.nil? %></td>
 					<td class="username"><%= user.groups.map(&:to_s).sort.join(', ') %></td>
 				</tr>
+
 			<% end -%>
 		</tbody>
 	</table>
+
 </div>
 
 <p class="pagination"><%= pagination_links_full @user_pages, @user_count %></p>
