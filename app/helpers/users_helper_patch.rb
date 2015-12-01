@@ -75,7 +75,7 @@ def user_list(users, &block)
 end
 
 		def valid_user_parents
-			User.all.select(&:active?) + User.where("id=?",@user.parent_id) - [@user] - @user.descendants
+	(User.all.select(&:active?) + User.where("id=?",@user.parent_id) - [@user] - @user.descendants).uniq
 		end
 	end
 end
