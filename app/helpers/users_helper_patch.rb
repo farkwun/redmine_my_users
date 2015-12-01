@@ -42,24 +42,24 @@ module UsersHelperPatch
 # end
 
 def render_descendants_tree(user)
-	# s = '<form><table class="list issues">'
-	# user_list(user.descendants.sort_by(&:lft)) do |child, level|
+	 #s = '<form><table class="list issues">'
+	 #user_list(user.children.sort_by(&:lft)) do |child, level|
 	# 	css = "issue issue-#{child.id} hascontextmenu"
 	# 	css << " idnt idnt-#{level}" if level > 0
 	# 	s << content_tag('tr',
 	# 				 content_tag('td', child.username) +
 	# 				 :class => css)
-	# end
-	# s << '</table></form>'
-	# s.html_safe
+	 #end
+	 #s << '</table></form>'
+	 #s.html_safe
+	 puts User.tree_view(:name)
+	 puts user.descendants
+	 puts user.self_and_ancestors
 	puts user.id
-	if User.where("parent_id=?", 275)
-		puts User.where("parent_id=?", user.id)
-		puts user.class
-		puts user.inspect
-		puts "YEEE"
-	else
+	if user.children.empty?
 		puts "NO KIDS"
+	else
+		puts "DAMN CHECK OUT ALL THEM KIDS"
 	end
 end
 

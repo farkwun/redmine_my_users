@@ -12,17 +12,19 @@ module UserPatch
 			has_many   :children, class_name: 'User', foreign_key: 'parent_id'
 			belongs_to :parent, class_name: 'User'
 
+			
 			acts_as_tree :dependent => :nullify, :order => User::USER_FORMATS[Setting.user_format || :firstname_lastname][:order]
 
 
 			validates_presence_of :parent
-			
+
 			safe_attributes 'parent_id'
 		end
 	end
 
 	module InstanceMethods
 	end
+
 end
 
 User.send :include, UserPatch

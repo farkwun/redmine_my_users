@@ -28,6 +28,11 @@ end
 # Examples place these patches inside /lib but I find /app/models to be
 # a more natural place for them.
 #
+
+Rails.configuration.to_prepare do
+  require_dependency 'user'
+  User.send(:extend, ActsAsTree::TreeView)
+end
 def load_patches(path = nil)
 	begin
 		Project.columns
